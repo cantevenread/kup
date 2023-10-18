@@ -11,8 +11,7 @@ import (
 
 // GetSummonersByName needs a name and returns a summoner type. can error.
 func GetSummonersByName(name string, c kup.KupClient) (*Summoner, error) {
-	url := "https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-name/" + name + "?api_key=" + c.RGAPI
-
+	url := string(c.RegionURL) + "lol/summoner/v4/summoners/by-name/" + name + "?api_key=" + c.RGAPI
 	response, err := http.Get(url)
 	if err != nil {
 		return nil, err
