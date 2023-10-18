@@ -3,7 +3,7 @@ package summoner
 import (
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"net/http"
 
 	"github.com/cantevenread/kup"
@@ -23,7 +23,7 @@ func GetSummonersByName(name string, c kup.KupClient) (*Summoner, error) {
 		return nil, fmt.Errorf("HTTP request failed with status code: %d", response.StatusCode)
 	}
 
-	body, err := ioutil.ReadAll(response.Body)
+	body, err := io.ReadAll(response.Body)
 	if err != nil {
 		return nil, err
 	}
