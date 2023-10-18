@@ -6,8 +6,10 @@ func Name() string {
 	return "kup"
 }
 
+// these are the regions:  BR1 EUN1 EUW1 JP1 KR LA1 LA2 NA1 OC1 TR1 RU PH2 SG2 TH2 TW2 VN2
 type Region string
 
+// this type is the common riot games url apis
 type URL string
 
 const (
