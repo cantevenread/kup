@@ -31,13 +31,25 @@ const (
 	VN2  URL = "https://vn2.api.riotgames.com/"
 )
 
+type Server string
+
+type ServerRoute string
+
+const (
+	AMERICAS Server = "https://americas.api.riotgames.com"
+	ASIA     Server = "https://asia.api.riotgames.com"
+	EUROPE   Server = "https://europe.api.riotgames.com"
+	SEA      Server = "https://sea.api.riotgames.com"
+)
+
 type KupClient struct {
 	RGAPI     string
 	Region    Region
 	RegionURL URL
+	Server    Server
 }
 
-func NewKupClient(rgapi string, region Region) (KupClient, error) {
+func NewKupClient(rgapi string, region Region, server Server) (KupClient, error) {
 	regionURL := func() URL {
 		switch region {
 		case "NA1":
@@ -83,6 +95,7 @@ func NewKupClient(rgapi string, region Region) (KupClient, error) {
 			RGAPI:     rgapi,
 			Region:    region,
 			RegionURL: regionURL(),
+			Server:    server,
 		}, nil
 	default:
 		return KupClient{}, fmt.Errorf("invalid region: %s", region)
